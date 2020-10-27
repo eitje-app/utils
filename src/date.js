@@ -9,8 +9,6 @@ export const getDate = (hours = 0) => {
 }
 
 
-export const dateFail = () => {}
-
 export const makeHourDate = (mins) => {
   const str = minToTimeString(mins)
   const [hours, minutes] = str.split(":")
@@ -18,7 +16,6 @@ export const makeHourDate = (mins) => {
   date.setHours(hours, minutes, 0, 0)
   return date;
 }
-
 
 export const getWeekDatesFromDate = date => {
 
