@@ -1,0 +1,19 @@
+{
+  "name": "@eitje/utils",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eitje-app/utils.git"
+  },
+  "author": "Abel van Hoek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eitje-app/utils/issues"
+  },
+  "homepage": "https://github.com/eitje-app/utils#readme"
+}
