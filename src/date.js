@@ -1,6 +1,8 @@
 import moment from 'moment'
 import _ from 'lodash'
-import utils from 'index'
+import utils from './index'
+
+
 
 export const getDate = (hours = 0) => {
   const date = new Date()
@@ -18,7 +20,6 @@ export const makeHourDate = (mins) => {
 }
 
 export const getWeekDatesFromDate = date => {
-
   const d = moment(date)
   const week = d.isoWeek()
   const year = d.isoWeekYear()
