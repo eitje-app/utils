@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.inTimeRange = exports.getCurrentMonth = exports.getCurrentYear = exports.roundTime = exports.timeStringToDate = exports.getMonthDays = exports.totalMins = exports.minSince = exports.getWholeWeekString = exports.getWholeWeekArray = exports.formatDate = exports.getWeekDatesFromDate = exports.makeHourDate = exports.getDate = undefined;
+exports.formatDate = exports.inTimeRange = exports.getCurrentMonth = exports.getCurrentYear = exports.roundTime = exports.timeStringToDate = exports.getMonthDays = exports.totalMins = exports.minSince = exports.getWholeWeekString = exports.getWholeWeekArray = exports.getWeekDatesFromDate = exports.makeHourDate = exports.getDate = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -59,10 +59,6 @@ var getWeekDatesFromDate = exports.getWeekDatesFromDate = function getWeekDatesF
   var week = d.isoWeek();
   var year = d.isoWeekYear();
   return getWholeWeekArray(week, year);
-};
-
-var formatDate = exports.formatDate = function formatDate(date) {
-  return humanDate(date);
 };
 
 var getWholeWeekArray = exports.getWholeWeekArray = function getWholeWeekArray(week, year) {
@@ -181,6 +177,12 @@ function secondsToTimeString(secs) {
 var inTimeRange = exports.inTimeRange = function inTimeRange(dateTime, hours) {
   var now = (0, _moment2.default)();
   return now.diff(dateTime, 'hours') <= hours;
+};
+
+var formatDate = exports.formatDate = function formatDate(date) {
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'DD-MM-YYYY';
+
+  return (0, _moment2.default)(date).format(format);
 };
 
 function timeStringToMin() {

@@ -1,7 +1,7 @@
 {
   "name": "@eitje/utils",
   "version": "1.0.0",
-  "description": "test",
+  "description": "Beautiful utility functions to make life a breeze",
   "main": "index.js",
   "scripts": {
     "test": "echo test",
@@ -17,10 +17,6 @@
     "url": "https://github.com/eitje-app/utils/issues"
   },
   "homepage": "https://github.com/eitje-app/utils#readme",
-  "dependencies": {
-    "lodash": "^4.17.20",
-    "moment": "^2.29.1"
-  },
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
     "babel-cli": "^6.26.0",

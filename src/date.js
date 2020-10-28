@@ -26,9 +26,7 @@ export const getWeekDatesFromDate = date => {
   return getWholeWeekArray(week, year)
 }
 
-export const formatDate = (date)=> {
-  return humanDate(date)
-}
+
 
 
 export const getWholeWeekArray = function(week, year) {
@@ -143,6 +141,10 @@ export function secondsToTimeString(secs) {
 export const inTimeRange = (dateTime, hours) => {
   const now = moment()
   return now.diff(dateTime, 'hours') <= hours
+}
+
+export const formatDate = (date, format = 'DD-MM-YYYY') => {
+  return moment(date).format(format)
 }
 
 export function timeStringToMin(time = "00:00") {
