@@ -4,6 +4,11 @@ import utils from './index'
 
 
 
+export const likeDate = (val) => {
+  const mmt = moment(val)
+  return !_.isNaN(mmt.hour())
+}
+
 export const getDate = (hours = 0) => {
   const date = new Date()
   date.setHours(hours, 0, 0, 0)

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-
+import utils from './index'
 const urlPattern = /(https?:\/\/|www\.)[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*[-a-zA-Z0-9@:%_\+~#?&\/=])*/ig
 
 export function snakeToCamel(s){
@@ -48,3 +48,18 @@ export function titleCase(str) {
     return word.replace(word[0], word[0].toUpperCase());
   }).join(' ');
 }
+
+export const search = (items, query, {field = 'label'} = {}) => {
+    if(!utils.exists(query)) return items
+    if(!items) return []
+    const str = query.replace(/\s+/g, '').toLowerCase()
+    const fields = _.isArray(field) ? field : [field]  
+    return items.filter(s => fields.some(f => hasMatch(s, f, str)) )
+}
+
+export const hasMatch = (item, field, query) => {
+  const val = item[field]
+  if(!val) return false;
+  return val.replace(/\s+/g, '').toLowerCase().includes(query)
+}
+

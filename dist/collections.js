@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mergeArrayOfObjects = exports.alwaysDefinedArray = exports.alwaysArray = exports.search = undefined;
+exports.mergeArrayOfObjects = exports.alwaysDefinedArray = exports.alwaysArray = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -11,6 +11,7 @@ exports.getMax = getMax;
 exports.getMin = getMin;
 exports.findAndReplace = findAndReplace;
 exports.toggle = toggle;
+exports.getIdsFromItems = getIdsFromItems;
 
 var _lodash = require('lodash');
 
@@ -46,30 +47,17 @@ function getMin(collection) {
   });
 }
 
-var search = exports.search = function search(items, query) {
-  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
-      _ref$field = _ref.field,
-      field = _ref$field === undefined ? 'label' : _ref$field;
-
-  if (!_index2.default.exists(query)) return items;
-  if (!items) return [];
-  var str = query.replace(/\s+/g, '').toLowerCase();
-  return items.filter(function (s) {
-    return s[field].replace(/\s+/g, '').toLowerCase().includes(str);
-  });
-};
-
 function findAndReplace() {
-  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref2$oldItems = _ref2.oldItems,
-      oldItems = _ref2$oldItems === undefined ? [] : _ref2$oldItems,
-      _ref2$newItems = _ref2.newItems,
-      newItems = _ref2$newItems === undefined ? [] : _ref2$newItems,
-      _ref2$oldIden = _ref2.oldIden,
-      oldIden = _ref2$oldIden === undefined ? "id" : _ref2$oldIden,
-      _ref2$newIden = _ref2.newIden,
-      newIden = _ref2$newIden === undefined ? "id" : _ref2$newIden,
-      mapFunc = _ref2.mapFunc;
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$oldItems = _ref.oldItems,
+      oldItems = _ref$oldItems === undefined ? [] : _ref$oldItems,
+      _ref$newItems = _ref.newItems,
+      newItems = _ref$newItems === undefined ? [] : _ref$newItems,
+      _ref$oldIden = _ref.oldIden,
+      oldIden = _ref$oldIden === undefined ? "id" : _ref$oldIden,
+      _ref$newIden = _ref.newIden,
+      newIden = _ref$newIden === undefined ? "id" : _ref$newIden,
+      mapFunc = _ref.mapFunc;
 
   if (newItems.length === 0) return oldItems;
   var items = oldItems.map(function (a) {
@@ -124,4 +112,12 @@ function toggle(arr, nieuw) {
     arr.push(nieuw);
   }
   return arr;
+}
+
+function getIdsFromItems(ids, items) {
+  return ids.filter(function (id) {
+    return items.some(function (item) {
+      return item.id === id;
+    });
+  });
 }

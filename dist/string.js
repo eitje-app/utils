@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.hasMatch = exports.search = undefined;
 exports.snakeToCamel = snakeToCamel;
 exports.camelize = camelize;
 exports.truncateString = truncateString;
@@ -12,6 +13,10 @@ exports.titleCase = titleCase;
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
+
+var _index = require('./index');
+
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -67,3 +72,25 @@ function titleCase(str) {
     return word.replace(word[0], word[0].toUpperCase());
   }).join(' ');
 }
+
+var search = exports.search = function search(items, query) {
+  var _ref2 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      _ref2$field = _ref2.field,
+      field = _ref2$field === undefined ? 'label' : _ref2$field;
+
+  if (!_index2.default.exists(query)) return items;
+  if (!items) return [];
+  var str = query.replace(/\s+/g, '').toLowerCase();
+  var fields = _lodash2.default.isArray(field) ? field : [field];
+  return items.filter(function (s) {
+    return fields.some(function (f) {
+      return hasMatch(s, f, str);
+    });
+  });
+};
+
+var hasMatch = exports.hasMatch = function hasMatch(item, field, query) {
+  var val = item[field];
+  if (!val) return false;
+  return val.replace(/\s+/g, '').toLowerCase().includes(query);
+};

@@ -13,12 +13,7 @@ export function getMin(collection, key = 'updated_at') {
   return items.reduce((a, b) => a[key] > b[key] ? b : a)
 }
 
-export const search = (items, query, {field = 'label'} = {}) => {
-    if(!utils.exists(query)) return items
-    if(!items) return []
-    const str = query.replace(/\s+/g, '').toLowerCase()
-    return items.filter(s => s[field].replace(/\s+/g, '').toLowerCase().includes(str))
-}
+
 
 export function findAndReplace({oldItems = [], newItems = [], oldIden = "id", newIden = "id", mapFunc} = {}) {
   
@@ -61,4 +56,8 @@ export function toggle(arr, nieuw) {
     arr.push(nieuw)
   }
   return arr;
+}
+
+export function money(int) {
+  return int.toLocaleString('nl-NL', {style: 'currency', currency: 'EUR'})
 }
