@@ -40,5 +40,10 @@ export function reduceObject(tally, item) {
 
 }
 
+export function funcOrObj(item, ...args) {
+  if (_.isFunction(item)) return item(...args);
+  return item;
+}
+
 
 
