@@ -3,9 +3,10 @@ import _ from 'lodash'
 import utils from './index'
 
 
+const formats = ['DD-MM-YYYY', 'YYYY-MM-DD']
 
 export const likeDate = (val) => {
-  const mmt = moment(val)
+  const mmt = moment(val, formats, true) // without strict any number is valid..
   return !_.isNaN(mmt.hour())
 }
 
