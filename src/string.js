@@ -6,6 +6,12 @@ export function snakeToCamel(s){
     return s.replace(/(\_\w)/g, function(m){return m[1].toUpperCase();});
 }
 
+export function camelToSnake(key) {
+   var result = key.replace( /([A-Z])/g, " $1" );
+   return result.split(' ').join('_').toLowerCase();
+}
+
+
 export function camelize(str) {
   return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
     return index === 0 ? word.toLowerCase() : word.toUpperCase();

@@ -62,8 +62,9 @@ export function humanDate(date) {
   return moment(date).format("dddd DD MMM")
 }
 
-export function fullHumanDate(date) {
-  return moment(date).format("dddd DD MMM YYYY")
+export function fullHumanDate(date, {dayname = true} = {}) {
+  const format = dayname ? "dddd DD MMM 'YY" : "DD MMM 'YY"
+  return moment(date).format(format)
 }
 
 export function getDateFromWeek(day, week, year) {
