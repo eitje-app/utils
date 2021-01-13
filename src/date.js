@@ -67,6 +67,19 @@ export function fullHumanDate(date, {dayname = true} = {}) {
   return moment(date).format(format)
 }
 
+export function shortDate(date) {
+  return moment(date).format("ddd DD MMM")
+}
+
+export function shortDateTime(date) {
+  return moment(date).format("ddd DD MMM HH:mm")
+}
+
+export function dateTime(date) {
+  return moment(date).format("DD-MM-YYYY HH:mm")
+}
+
+
 export function getDateFromWeek(day, week, year) {
   let mmt = moment()
   

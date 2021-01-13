@@ -5,7 +5,7 @@ export function exists(item) {
   if(_.isString(item) ) {
     return item.replace(/\s/g,'').length > 0
   }
-  return (!item.length || item.length > 0)
+  return (item?.length > 0)
 }
 
 export function add(tally, item) {
