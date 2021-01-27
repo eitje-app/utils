@@ -61,3 +61,7 @@ export function toggle(arr, nieuw) {
 export function money(int) {
   return int.toLocaleString('nl-NL', {style: 'currency', currency: 'EUR'})
 }
+
+export function zeroOrNaN(num) {
+  return (num === 0 || isNaN(num))
+}

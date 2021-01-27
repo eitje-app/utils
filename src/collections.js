@@ -59,3 +59,11 @@ export function toggle(arr, nieuw) {
 export function getIdsFromItems(ids, items) {
   return ids.filter(id => items.some(item => item.id === id))
 }
+
+export function mergeJoinItems(joinTableItems, mainItems, key) {
+  return joinTableItems.map(i => ({...mainItems.find(i2 => i2.id === i[key]), ...i }))
+}
+
+export function reduce(items) {
+  return items.reduce((item, tally) => item + tally, 0)
+}

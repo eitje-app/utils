@@ -2,8 +2,9 @@ import moment from 'moment'
 import _ from 'lodash'
 import utils from './index'
 
+export const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
-const formats = ['DD-MM-YYYY', 'YYYY-MM-DD']
+export const formats = ['DD-MM-YYYY', 'YYYY-MM-DD']
 
 export const likeDate = (val) => {
   const mmt = moment(val, formats, true) // without strict any number is valid..
@@ -15,6 +16,7 @@ export const getDate = (hours = 0) => {
   date.setHours(hours, 0, 0, 0)
   return date;
 }
+
 
 
 export const makeHourDate = (mins) => {
@@ -55,11 +57,40 @@ export const getWholeWeekString = function(week, year) {
 } 
 
 export const minSince = (start) => {
-  return moment().diff(moment(start), 'm')
+  return moment().endOf('day').diff(moment(start), 'm')
+}
+
+export function daysPassed(date) {
+  return moment().endOf('day').diff(moment(date).endOf("day"), 'days')
+}
+
+export function daysUntill(date) {
+  return -daysPassed(date)
+}
+
+export function yearsPassed(date, comparison) {
+  return moment(comparison).endOf('day').diff(moment(date).endOf("day"), 'years')
+}
+
+export function yearsUntill(date, comparison) {
+  return -yearsPassed(date, comparison)
+}
+
+export function nextDate(date) {
+  const yearDiff = yearsPassed(date) + 1 // we want next date
+  return moment(date).add(yearDiff, 'years').format('YYYY-MM-DD')
 }
 
 export function humanDate(date) {
   return moment(date).format("dddd DD MMM")
+}
+
+export function humanYearDate(date) {
+  return moment(date).format("DD MMM YYYY")
+}
+
+export function fullHumanYearDate(date) {
+  return moment(date).format("DD MMMM YYYY")
 }
 
 export function fullHumanDate(date, {dayname = true} = {}) {
@@ -133,6 +164,15 @@ export const getMonthDays = (month, year) => {
 
 }
 
+export function minToHourArray(time) { // => [3, 40] for 03:40
+  const str = _.isString(time) ? time : minToTimeString(time)
+  const split = str.split(":")
+  const hours = Number(split[0])
+  const mins = Number(split[1])
+  return [hours, mins]
+}
+
+
 export const timeStringToDate = val => {
   const date = new Date()
   const vals = val.split(":")
@@ -167,18 +207,26 @@ export const formatDate = (date, format = 'DD-MM-YYYY') => {
   return moment(date).format(format)
 }
 
+export function convertTimeStr(time) {
+  var spT = time.split(":")
+  var time1 = spT[0]
+  var time2 = spT[1]
+  return [Number(time1), Number(time2)]
+}
+
+
 export function timeStringToMin(time = "00:00") {
   if(!_.isString(time)) {
     return 0;
   } 
-  var spT = time.split(":")
-  var time1 = spT[0]
-  var time2 = spT[1]
-  return Number(time1) * 60 + Number(time2)
+  const [hours, mins] = convertTimeStr(time)
+  return hours * 60 + mins
 }
 
+
+
 export function minToTimeString(mins, abs = false) {
-  if(!utils.isPresent(mins)) return 'n/a'
+  if(!utils.isPresent(mins)) return null
   mins = Math.round(mins);
   let prefix = ""
   if(abs) {
