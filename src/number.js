@@ -65,3 +65,6 @@ export function money(int) {
 export function zeroOrNaN(num) {
   return (num === 0 || isNaN(num))
 }
+
+export const isOdd = num => num % 2 == 1;
+
