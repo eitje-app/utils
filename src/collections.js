@@ -61,7 +61,7 @@ export function getIdsFromItems(ids, items) {
 }
 
 export function mergeJoinItems(joinTableItems, mainItems, key) {
-  return joinTableItems.map(i => ({...mainItems.find(i2 => i2.id === i[key]), ...i }))
+  return joinTableItems.map(i => ({...i, ...mainItems.find(i2 => i2.id === i[key]) }))
 }
 
 export function reduce(items) {
