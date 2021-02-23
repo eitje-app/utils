@@ -1,5 +1,9 @@
 import _ from 'lodash'
 
+export function objPresent(item) {
+  Object.values(item).some(i => exists(i))
+}
+
 export function exists(item) {
   if(_.isNumber(item)) return true; 
   if(!item) return false;
