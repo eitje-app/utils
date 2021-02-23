@@ -34,9 +34,6 @@ export const getWeekDatesFromDate = date => {
   return getWholeWeekArray(week, year)
 }
 
-
-
-
 export const getWholeWeekArray = function(week, year) {
   var datesArr = []
   let dagen = days()
@@ -118,9 +115,6 @@ export function getDateFromWeek(day, week, year) {
   mmt.isoWeekYear(year)
   return mmt;
 };
-
-
-
 
 export function isAfterDate(date, dateTwo = moment()) {
   return getDayDiff(date, dateTwo) >= 0
