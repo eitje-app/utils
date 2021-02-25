@@ -59,6 +59,7 @@ export function toggle(arr, nieuw) {
 }
 
 export function money(int) {
+  int = Number(int)
   return int.toLocaleString('nl-NL', {style: 'currency', currency: 'EUR'})
 }
 
