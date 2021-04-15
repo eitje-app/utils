@@ -67,3 +67,7 @@ export function mergeJoinItems(joinTableItems, mainItems, key) {
 export function reduce(items) {
   return items.filter(Number).reduce((item, tally) => item + tally, 0) 
 }
+
+export function sum(arr = [], field) {
+  return reduce(arr.map(i => i[field] || 0))
+}
