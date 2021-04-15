@@ -6,7 +6,7 @@ export function exists(item) {
   if(_.isNumber(item)) return true; 
   if(!item) return false;
   if(_.isString(item) ) {
-    return item.replace(/\s/g,'').length > 0
+    return item.replace(/\s/g,'').length > 0 && item != 'undefined'
   }
   
   if(_.isPlainObject(item)) {
