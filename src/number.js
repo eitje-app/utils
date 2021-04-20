@@ -13,6 +13,9 @@ export function getMin(collection, key = 'updated_at') {
   return items.reduce((a, b) => a[key] > b[key] ? b : a)
 }
 
+export function pct({total, active} = {}) {
+  return Math.round( (active / total) * 100)
+}
 
 
 export function findAndReplace({oldItems = [], newItems = [], oldIden = "id", newIden = "id", mapFunc} = {}) {
