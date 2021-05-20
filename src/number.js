@@ -42,9 +42,6 @@ export function findAndReplace({oldItems = [], newItems = [], oldIden = "id", ne
 
 }
 
-export const alwaysArray = item => _.isArray(item) ? item : [item]
-export const alwaysDefinedArray = item => alwaysArray(item).filter(i => !!i)
-
 export const mergeArrayOfObjects = (arr1, arr2, field = "id") => 
   arr1.map(i => {
     const other = arr2.find(i2 => i2[field] === i[field])
