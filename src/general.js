@@ -27,9 +27,8 @@ export function isPresent(field) {
 }
 
 export function reduceArrOfObj(data) {
-  return data
-    .map((d) => Object.values(d))
-    .flat()
+  const flattened = _.flatten(data.map((d) => Object.values(d)))
+  return flattened
     .reduce((tally, item) => tally + item, 0)
 }
 
