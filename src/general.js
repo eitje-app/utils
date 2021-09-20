@@ -36,6 +36,7 @@ export function reduceObjects(data) {
   return data.reduce(reduceObject, {})
 }
 
+
 export function round(num, places = 2) {
   if (!num) return num
 
@@ -71,4 +72,9 @@ export function randomId() {
     .toString(36)
     .replace(/[^a-z]+/g, '')
     .substr(2, 10)
+}
+
+export function makeCns(...classNames) {
+  classNames = _.flatten(classNames) // allow array args
+  return classNames.filter(Boolean).join(" ")
 }
