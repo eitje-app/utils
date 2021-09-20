@@ -1,4 +1,5 @@
 import utils from './index'
+import _ from 'lodash'
 
 export function objectEmpty(obj) {
   return Object.keys(obj).length === 0 || 
@@ -6,5 +7,5 @@ export function objectEmpty(obj) {
 }
 
 export function objPresent(item) {
-  return Object.values(item).some(i => utils.exists(i))
+  return _.isObject(item) && Object.values(item).some(i => utils.exists(i))
 }
