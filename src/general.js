@@ -79,7 +79,7 @@ export function makeCns(...classNames) {
   return classNames.filter(Boolean).join(" ")
 }
 
-export function debounce(func, wait, immediate) {
+export function debounce(func, wait, immediate = true) {
   var timeout
   return function () {
     var context = this,
