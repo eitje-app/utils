@@ -184,9 +184,18 @@ export const roundTime = (time, amt = 1) => {
   return time;
 }
 
-export const getCurrentYear = () => moment().year()
 
-export const getCurrentMonth = () => moment().month() + 1 // moment thinks january == 0
+
+export const getYear = (date) => moment(date).year()
+
+export const getMonth = (date) => moment(date).month() + 1 // moment thinks january == 0
+
+export const makeDateObj = date => ({month: getMonth(date), year: getYear(date) })
+
+export const getCurrentYear = getYear
+
+export const getCurrentMonth = getMonth 
+
 
 export function secondsToTimeString(secs) {
   return  new Date(secs * 1000).toISOString().substr(11, 8);
