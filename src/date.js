@@ -116,6 +116,13 @@ export function getDateFromWeek(day, week, year) {
   return mmt;
 };
 
+export function getYearWeekFromDate(date) {
+  return {
+    week: date.isoWeek(),
+    year: date.isoWeekYear()
+  }
+}
+
 export function isAfterDate(date, dateTwo = moment()) {
   return getDayDiff(date, dateTwo) >= 0
 }
