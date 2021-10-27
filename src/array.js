@@ -1,0 +1,3 @@
+import _ from 'lodash'
+
+export const intersects = (arr1, arr2) => _.intersection(arr1, arr2).length > 0
