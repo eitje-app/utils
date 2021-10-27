@@ -14,51 +14,48 @@ export const likeDate = (val) => {
 export const getDate = (hours = 0) => {
   const date = new Date()
   date.setHours(hours, 0, 0, 0)
-  return date;
+  return date
 }
-
-
 
 export const makeHourDate = (mins) => {
   const str = minToTimeString(mins)
-  const [hours, minutes] = str.split(":")
+  const [hours, minutes] = str.split(':')
   const date = new Date()
   date.setHours(hours, minutes, 0, 0)
-  return date;
+  return date
 }
 
-export const getWeekDatesFromDate = date => {
+export const getWeekDatesFromDate = (date) => {
   const d = moment(date)
   const week = d.isoWeek()
   const year = d.isoWeekYear()
   return getWholeWeekArray(week, year)
 }
 
-export const getWholeWeekArray = function(week, year) {
+export const getWholeWeekArray = function (week, year) {
   var datesArr = []
   let dagen = days()
   _(7).times((n) => {
-    datesArr.push(getDateFromWeek(n + 1, week, year).format("YYYY-MM-DD"))
+    datesArr.push(getDateFromWeek(n + 1, week, year).format('YYYY-MM-DD'))
   })
-  return datesArr;
-} 
+  return datesArr
+}
 
-
-export const getWholeWeekString = function(week, year) {
+export const getWholeWeekString = function (week, year) {
   var datesArr = []
   let dagen = days()
   _(7).times((n) => {
-    datesArr.push({date: getDateFromWeek(n + 1, week, year).format("YYYY-MM-DD")})
+    datesArr.push({date: getDateFromWeek(n + 1, week, year).format('YYYY-MM-DD')})
   })
-  return datesArr;
-} 
+  return datesArr
+}
 
 export const minSince = (start) => {
   return moment().endOf('day').diff(moment(start), 'm')
 }
 
 export function daysPassed(date) {
-  return moment().endOf('day').diff(moment(date).endOf("day"), 'days')
+  return moment().endOf('day').diff(moment(date).endOf('day'), 'days')
 }
 
 export function daysUntill(date) {
@@ -66,7 +63,7 @@ export function daysUntill(date) {
 }
 
 export function yearsPassed(date, comparison) {
-  return moment(comparison).endOf('day').diff(moment(date).endOf("day"), 'years')
+  return moment(comparison).endOf('day').diff(moment(date).endOf('day'), 'years')
 }
 
 export function yearsUntill(date, comparison) {
@@ -79,15 +76,15 @@ export function nextDate(date) {
 }
 
 export function humanDate(date) {
-  return moment(date).format("dddd DD MMM")
+  return moment(date).format('dddd DD MMM')
 }
 
 export function humanYearDate(date) {
-  return moment(date).format("DD MMM YYYY")
+  return moment(date).format('DD MMM YYYY')
 }
 
 export function fullHumanYearDate(date) {
-  return moment(date).format("DD MMMM YYYY")
+  return moment(date).format('DD MMMM YYYY')
 }
 
 export function fullHumanDate(date, {dayname = true} = {}) {
@@ -96,30 +93,29 @@ export function fullHumanDate(date, {dayname = true} = {}) {
 }
 
 export function shortDate(date) {
-  return moment(date).format("ddd DD MMM")
+  return moment(date).format('ddd DD MMM')
 }
 
 export function shortDateTime(date) {
-  return moment(date).format("ddd DD MMM HH:mm")
+  return moment(date).format('ddd DD MMM HH:mm')
 }
 
 export function dateTime(date) {
-  return moment(date).format("DD-MM-YYYY HH:mm")
+  return moment(date).format('DD-MM-YYYY HH:mm')
 }
-
 
 export function getDateFromWeek(day, week, year) {
   let mmt = moment()
-  
+
   mmt.isoWeekday(day).isoWeek(week)
   mmt.isoWeekYear(year)
-  return mmt;
-};
+  return mmt
+}
 
 export function getYearWeekFromDate(date) {
   return {
     week: date.isoWeek(),
-    year: date.isoWeekYear()
+    year: date.isoWeekYear(),
   }
 }
 
@@ -131,12 +127,12 @@ function getDayDiff(date, dateTwo = moment()) {
   date = moment(date)
   dateTwo = moment(dateTwo)
   dateTwo = dateTwo.startOf('day')
-  const diff = date.startOf('day').diff(dateTwo, 'd') 
-  return diff;
+  const diff = date.startOf('day').diff(dateTwo, 'd')
+  return diff
 }
 
 export function today() {
-  return moment().format("YYYY-MM-DD")
+  return moment().format('YYYY-MM-DD')
 }
 
 export function todayOrEarlier(date) {
@@ -148,64 +144,59 @@ export function inPast(date) {
 }
 
 export const totalMins = (string1, string2) => {
- return moment(string2).diff(moment(string1), 'minutes')
+  return moment(string2).diff(moment(string1), 'minutes')
 }
 
 export function highest(date1, date2) {
-   if(!date2) return date1;
-   if(!date1) return date2;
-   if(date1 && date2) return date1 > date2 ? date1 : date2;
+  if (!date2) return date1
+  if (!date1) return date2
+  if (date1 && date2) return date1 > date2 ? date1 : date2
 }
 
 export const getMonthDays = (month, year) => {
   const start = moment([year, month - 1, 1])
-  const startOfMonth = start.format("YYYY-MM-DD")
-  const endOfMonth = start.endOf('month').format("YYYY-MM-DD")
+  const startOfMonth = start.format('YYYY-MM-DD')
+  const endOfMonth = start.endOf('month').format('YYYY-MM-DD')
   return {startOfMonth, endOfMonth}
-
 }
 
-export function minToHourArray(time) { // => [3, 40] for 03:40
+export function minToHourArray(time) {
+  // => [3, 40] for 03:40
   const str = _.isString(time) ? time : minToTimeString(time)
-  const split = str.split(":")
+  const split = str.split(':')
   const hours = Number(split[0])
   const mins = Number(split[1])
   return [hours, mins]
 }
 
-
-export const timeStringToDate = val => {
+export const timeStringToDate = (val) => {
   const date = new Date()
-  const vals = val.split(":")
+  const vals = val.split(':')
   date.setHours(vals[0], vals[1], 0, 0)
-  return date;
-
+  return date
 }
 
 export const roundTime = (time, amt = 1) => {
   time = moment(time)
   const mod = time.minute() % amt
-  if(mod === 0) return time;
-  const remainder = amt - (mod)
+  if (mod === 0) return time
+  const remainder = amt - mod
   time.add(remainder, 'minutes')
-  return time;
+  return time
 }
-
-
 
 export const getYear = (date) => moment(date).year()
 
 export const getMonth = (date) => moment(date).month() + 1 // moment thinks january == 0
 
-export const makeDateObj = date => ({month: getMonth(date), year: getYear(date) })
+export const makeDateObj = (date) => ({month: getMonth(date), year: getYear(date)})
 
 export const getCurrentYear = getYear
 
-export const getCurrentMonth = getMonth 
-
+export const getCurrentMonth = getMonth
 
 export function secondsToTimeString(secs) {
-  return  new Date(secs * 1000).toISOString().substr(11, 8);
+  return new Date(secs * 1000).toISOString().substr(11, 8)
 }
 
 export const inTimeRange = (dateTime, hours) => {
@@ -218,48 +209,54 @@ export const formatDate = (date, format = 'DD-MM-YYYY') => {
 }
 
 export function convertTimeStr(time) {
-  var spT = time.split(":")
+  var spT = time.split(':')
   var time1 = spT[0]
   var time2 = spT[1]
   return [Number(time1), Number(time2)]
 }
 
-
-export function timeStringToMin(time = "00:00") {
-  if(!_.isString(time)) {
-    return 0;
-  } 
+export function timeStringToMin(time = '00:00') {
+  if (!_.isString(time)) {
+    return 0
+  }
   const [hours, mins] = convertTimeStr(time)
   return hours * 60 + mins
 }
 
-
-
 export function minToTimeString(mins, abs = false) {
-  if(!utils.isPresent(mins)) return null
-  mins = Math.round(mins);
-  let prefix = ""
-  if(abs) {
-    if(mins < 0) prefix = "-";
+  if (!utils.isPresent(mins)) return null
+  mins = Math.round(mins)
+  let prefix = ''
+  if (abs) {
+    if (mins < 0) prefix = '-'
     mins = Math.abs(mins)
   }
-  if(mins < 0) { mins = 0 }
+  if (mins < 0) {
+    mins = 0
+  }
   var mod = mins % 60
-  var hr;
+  var hr
   if (mod > 0) {
     hr = (mins - mod) / 60
-    if(hr < 10) {
+    if (hr < 10) {
       hr = `0${hr}`
     }
-     if (mod < 10) {
+    if (mod < 10) {
       mod = `0${mod}`
     }
     return `${prefix}${hr}:${mod}`
   } else {
-      mod = mins / 60
-      if (mod < 10) {
-        mod = `0${mod}`
-      }
-      return `${prefix}${mod}:00`
+    mod = mins / 60
+    if (mod < 10) {
+      mod = `0${mod}`
     }
+    return `${prefix}${mod}:00`
   }
+}
+
+/// datetime (new methods)
+
+export function buildDateTime({date, time}) {
+  const format = 'YYYY-MM-DD HH:mm'
+  return moment(`${date} ${time}`, format).format(format) // is this sensible at all?
+}
