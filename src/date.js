@@ -3,6 +3,7 @@ import _ from 'lodash'
 import utils from './index'
 
 export const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+export const weekdayObj = weekdays.map((d, i) => ({id: i, name: d}))
 
 export const formats = ['DD-MM-YYYY', 'YYYY-MM-DD']
 
