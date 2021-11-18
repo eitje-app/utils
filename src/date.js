@@ -33,6 +33,11 @@ export const getWeekDatesFromDate = (date) => {
   return getWholeWeekArray(week, year)
 }
 
+export const getStartAndEndOfWeek = (date) => {
+  const week = getWeekDatesFromDate(date)
+  return {start: week[0], end: week[6]}
+}
+
 export const getWholeWeekArray = function (week, year) {
   var datesArr = []
   let dagen = days()
