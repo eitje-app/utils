@@ -9,3 +9,13 @@ export function objectEmpty(obj) {
 export function objPresent(item) {
   return _.isObject(item) && Object.values(item).some(i => utils.exists(i))
 }
+
+export const composeObj = (...objs) => {
+  let obj = {}
+  
+  objs.forEach(o => {
+    obj = {...obj, ...(o || {}) }
+  })
+
+  return obj
+}

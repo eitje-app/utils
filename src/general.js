@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 export function exists(item) {
+  if(_.isFunction(item)) return true
   if (_.isNumber(item)) return true
   if (!item) return false
   if (_.isString(item)) {
