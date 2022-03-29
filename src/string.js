@@ -69,7 +69,7 @@ export const search = (items, query, {field = 'label'} = {}) => {
 }
 
 export const hasMatch = (item, field, query) => {
-  let val = item[field]
+  let val = _.get(item, field)
   if (!val) return false
   if (_.isArray(val)) val = val.join('')
   return val.replace(/\s+/g, '').toLowerCase().includes(query)
