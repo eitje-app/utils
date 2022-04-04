@@ -63,7 +63,7 @@ export function titleCase(str) {
 export const search = (items, query, {field = 'label'} = {}) => {
   if (!utils.exists(query)) return items
   if (!items) return []
-  const str = query.replace(/\s+/g, '').toLowerCase()
+  const str = _.isString(query) ? query.replace(/\s+/g, '').toLowerCase() : query
   const fields = _.isArray(field) ? field : [field]
   return items.filter((s) => fields.some((f) => hasMatch(s, f, str)))
 }
@@ -72,5 +72,6 @@ export const hasMatch = (item, field, query) => {
   let val = _.get(item, field)
   if (!val) return false
   if (_.isArray(val)) val = val.join('')
+  if (_.isNumber(val)) return val == query
   return val.replace(/\s+/g, '').toLowerCase().includes(query)
 }
