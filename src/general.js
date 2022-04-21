@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 export function exists(item) {
-  if(_.isFunction(item)) return true
+  if (_.isFunction(item)) return true
   if (_.isNumber(item)) return true
   if (!item) return false
   if (_.isString(item)) {
@@ -12,11 +12,11 @@ export function exists(item) {
     return Object.keys(item).length > 0
   }
 
-  if (_.isBoolean(item)) {
-    return !!item
+  if (_.isArray(item)) {
+    return item && item.length > 0
   }
 
-  return item && item.length > 0
+  return !!item
 }
 
 export function add(tally, item) {
@@ -29,14 +29,12 @@ export function isPresent(field) {
 
 export function reduceArrOfObj(data) {
   const flattened = _.flatten(data.map((d) => Object.values(d)))
-  return flattened
-    .reduce((tally, item) => tally + item, 0)
+  return flattened.reduce((tally, item) => tally + item, 0)
 }
 
 export function reduceObjects(data) {
   return data.reduce(reduceObject, {})
 }
-
 
 export function round(num, places = 2) {
   if (!num) return num
@@ -77,7 +75,7 @@ export function randomId() {
 
 export function makeCns(...classNames) {
   classNames = _.flatten(classNames) // allow array args
-  return classNames.filter(Boolean).join(" ")
+  return classNames.filter(Boolean).join(' ')
 }
 
 export function debounce(func, wait, immediate = true) {
