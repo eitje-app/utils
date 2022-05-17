@@ -73,5 +73,12 @@ export const hasMatch = (item, field, query) => {
   if (!val) return false
   if (_.isArray(val)) val = val.join('')
   if (_.isNumber(val)) return val == query
-  return val.replace(/\s+/g, '').toLowerCase().includes(query)
+  if (_.isString(val)) {
+    return val
+      .replace(/\s+/g, '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // accents & diacritics
+      .includes(query)
+  }
 }
