@@ -52,6 +52,7 @@ export const mergeArrayOfObjects = (arr1, arr2, field = 'id') =>
   })
 
 export function toggle(arr, nieuw) {
+  if (_.isArray(nieuw)) return toggleArray(arr, nieuw)
   arr = _.cloneDeep(arr)
   if (arr.includes(nieuw)) {
     arr = arr.filter((item) => item !== nieuw)
@@ -59,6 +60,14 @@ export function toggle(arr, nieuw) {
     arr.push(nieuw)
   }
   return arr
+}
+
+export function toggleArray(arr, newArr) {
+  let finalArr = arr
+  newArr.forEach((item) => {
+    finalArr = toggle(finalArr, item)
+  })
+  return finalArr
 }
 
 export function getIdsFromItems(ids, items) {
