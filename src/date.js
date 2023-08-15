@@ -232,9 +232,9 @@ export function timeStringToMin(time = '00:00') {
 export function minToTimeString(mins, abs = false) {
   if (!utils.isPresent(mins)) return null
   mins = Math.round(mins)
-  let prefix = ''
+  let prefix = abs ? '+ ' : ''
   if (abs) {
-    if (mins < 0) prefix = '-'
+    if (mins < 0) prefix = '- '
     mins = Math.abs(mins)
   }
   if (mins < 0) {

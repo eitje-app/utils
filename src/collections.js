@@ -83,5 +83,10 @@ export function reduce(items) {
 }
 
 export function sum(arr = [], field) {
-  return reduce(arr.map((i) => i[field] || 0))
+  const mapper = (i) => {
+    if (_.isFunction(field)) return field(i)
+    return i[field] || 0
+  }
+
+  return reduce(arr.map(mapper))
 }
