@@ -229,6 +229,35 @@ export function timeStringToMin(time = '00:00') {
   return hours * 60 + mins
 }
 
+export function minutesToString(mins, options = {}) {
+  if (!utils.isPresent(mins)) return null
+  let prefix = ''
+  let sign = options.hasOwnProperty('sign') ? options.sign : mins < 0
+
+  if (sign) prefix = mins > 0 ? '+ ' : mins < 0 ? '- ' : ''
+
+  mins = Math.abs(Math.round(mins))
+
+  var mod = mins % 60
+  var hr
+  if (mod > 0) {
+    hr = (mins - mod) / 60
+    if (hr < 10) {
+      hr = `0${hr}`
+    }
+    if (mod < 10) {
+      mod = `0${mod}`
+    }
+    return `${prefix}${hr}:${mod}`
+  } else {
+    mod = mins / 60
+    if (mod < 10) {
+      mod = `0${mod}`
+    }
+    return `${prefix}${mod}:00`
+  }
+}
+
 export function minToTimeString(mins, abs = false) {
   if (!utils.isPresent(mins)) return null
 
