@@ -22,13 +22,6 @@ export function camelize(str) {
     .replace(/\s+/g, "");
 }
 
-export function kebabize(str) {
-  return str.replace(
-    /[A-Z]+(?![a-z])|[A-Z]/g,
-    ($, ofs) => (ofs ? "-" : "") + $.toLowerCase()
-  );
-}
-
 export function truncateString(str, num, addPoints = true, { canBeLink } = {}) {
   if (!str) return "";
   let isSmall = false;
