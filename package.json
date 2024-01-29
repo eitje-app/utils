@@ -1,6 +1,6 @@
 {
   "name": "@eitje/utils",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "description": "Beautiful utility functions to make life a breeze",
   "main": "index.js",
   "scripts": {

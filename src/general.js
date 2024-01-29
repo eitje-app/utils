@@ -78,6 +78,13 @@ export function makeCns(...classNames) {
   return classNames.filter(Boolean).join(" ");
 }
 
+export function makeCnVariants(baseName, ...rest) {
+  return makeCns(
+    baseName,
+    rest.filter(Boolean).map((cn) => baseName + "-" + cn)
+  );
+}
+
 export function debounce(func, wait, immediate = true) {
   var timeout;
   return function () {
